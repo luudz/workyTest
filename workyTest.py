@@ -28,6 +28,9 @@ f_hobbits = {
     'GOLLUM': []
 }
 
+#Guarda la lista de hobbits con más post
+popular_hobbit = [[],0]
+
 for post in subreddit:
     for hobbit in filters:
         if hobbit in post.title.upper():
@@ -40,4 +43,14 @@ for post in subreddit:
             else:    
                 f_hobbits[hobbit].append(post.title)
 
+for hbt in f_hobbits:
+    if len(f_hobbits[hbt]) == popular_hobbit[1]:
+        popular_hobbit[0].append(hbt)
+    elif len(f_hobbits[hbt]) > popular_hobbit[1]:
+        popular_hobbit[0] = [hbt]
+        popular_hobbit[1] = len(f_hobbits[hbt])
+
+print('POST AGRUPADOS POR HOBBIT')
 print(f_hobbits)
+print('LOS HOBBITS CON MÁS POST')
+print(popular_hobbit[0])
