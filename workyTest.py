@@ -34,7 +34,10 @@ f_hobbits = {
 }
 
 #Guarda la lista de hobbits con más post
-popular_hobbit = [[],0]
+popular_hobbit = ['',0]
+
+#Guarda los hobbits ordenados alfabéticamente
+hobbits = ['BILBO', 'FRODO', 'GOLLUM', 'MERRY', 'PIPPIN', 'SAM']
 
 #Filtra los post por hobbit
 for post in subreddit:
@@ -52,16 +55,18 @@ for post in subreddit:
 #Obtiene el/los hobbit(s) con más post
 for hbt in f_hobbits:
     if len(f_hobbits[hbt]) == popular_hobbit[1]:
-        popular_hobbit[0].append(hbt)
+    	new_popular = hobbits.index(hbt)
+    	current_popular = hobbits.index(popular_hobbit[0])
+    	if new_popular < current_popular:
+    		popular_hobbit[0] = hbt
     elif len(f_hobbits[hbt]) > popular_hobbit[1]:
-        popular_hobbit[0] = [hbt]
+        popular_hobbit[0] = hbt
         popular_hobbit[1] = len(f_hobbits[hbt])
 
 #Hace el upvote a los post del hobbit más popular
-for hbt in popular_hobbit[0]:
-    for post in f_hobbits[hbt]:
-        submission = reddit.submission(id=post.id)
-        submission.upvote()
+for post in f_hobbits[popular_hobbit[0]]:
+    submission = reddit.submission(id=post.id)
+    submission.upvote()	
 
 #imprime en json los post agupados por hobbit
 def print_json():
@@ -73,7 +78,7 @@ def print_json():
         print('\t]')
     print('}')
 
-print('POST AGRUPADOS POR HOBBIT')
+print('POST AGRUPADOS POR HOBBIT:')
 print_json()
-print('LOS HOBBITS CON MÁS POST')
+print('EL HOBBIT MÁS POPULAR ES:')
 print(popular_hobbit[0])
