@@ -18,17 +18,17 @@ El mismo código también fue probado satisfactoriamente bajo el siguiente ambie
 - Python 3.7.3
 - Terminal del sistema
 
-##Descripción de la aplicación
+## Descripción de la aplicación
 La aplicación requiere 3 entradas, al ejecutar el código, se irán solicitando una por una en la consola:
 
--Nombre del reddit (ej. lotr)
--Cantidad de post a clasificar (ej. 100)
--Lista de palabras clave para filtrar, separadas por una coma (ej, frodo,bilbo,sam,merry,pippin,gollum)
+- Nombre del reddit (ej. lotr)
+- Cantidad de post a clasificar (ej. 100)
+- Lista de palabras clave para filtrar, separadas por una coma (ej, frodo,bilbo,sam,merry,pippin,gollum)
 
 Una vez que se reciben las 3 entradas, se mostrarán dos campos de salida:
 
--Post clasificados por las palabras clave guardadas en los filtros, en formato JSON.
--Filtro con más post.
+- Post clasificados por las palabras clave guardadas en los filtros, en formato JSON.
+- Filtro con más post.
 
 Además que a los post de filtro más popular se les realizará un upvote.
 
@@ -38,6 +38,14 @@ Se ejecutó la aplicación con los valores del ejemplo anterior:
 ![Entrada de datos](/images/input_lotr.png)
 
 ![Salida al ejecutar](/images/output_lotr.png)
+
+Se volvió a ejecutar el código con diferentes entradas:
+- Subreddit: Python
+- Cantidad de post: 100
+- Filtros: nginx,saas,learn,code,tutorial,program
+
+![Entrada de datos](/images/input_python.png)
+![Salida al ejecutar](/immages/output_python.png)
 
 ## Ejecución del código
 
