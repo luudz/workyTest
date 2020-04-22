@@ -1,5 +1,6 @@
 #Python Reddit API Wrapper
 import praw
+import filterSubreddit
 
 #Obtiene una instancia de Reddit
 reddit = praw.Reddit(  client_id = 'RPjn4fqZlJqniA',
@@ -10,75 +11,43 @@ reddit = praw.Reddit(  client_id = 'RPjn4fqZlJqniA',
                        password = 'pruebaWorky'
                      )
 
+print("BIENVENIDO AL CLASIFICADOR DE POST DE REDDIT")
+
+#Guarda el nombre del subreddit que se va a clasificar
+subredditName = input("Para comenzar ingresa el nombre del subreddit que deseas clasificar:")
+
+#Guarda el número de post que se van a clasificar
+subredditLimit = input("Ahora ingresa el número de post que deseas clasificar:")
+
+#Guarda las palabras que serás usadas como filtro
+subredditFilter = input("Escribe las palabras con las que se clasificarán los post, separas por una coma (,)")
+print('ESPERA, LOS POST SE ESTÁN AGRUPANDPO...')
+
+#Cambia a mayúsculas las palabras que se usarán como filtro
+subredditFilterUpper = subredditFilter.upper()
+
+#Ordena el filtro alfabéticamente
+filters = sorted(subredditFilterUpper.split(","))
+
+#Guarda los post clasficados según los filtros
+f_posts = {}
+
+#Guarda el filtro que tiene más posts
+popular_post = ['', 0]
+
+#Crea el diccionaro asignando como llave los filtros y valor un arreglo vacío
+for filter in filters:
+	f_posts[filter] = []
+
 #.hot corresponde al ordenamiento por 'hot' en Reddit 
 #(si se quisiera extraer los post con ordenamiento 'new', se usa '.new(limit=100)'),
 #limit corresponde a la cantidad de post que se obtienen
-subreddit = reddit.subreddit('lotr').hot(limit=100)
+subreddit = reddit.subreddit(subredditName).hot(limit=int(subredditLimit))
 
-print('ESPERA, LOS POST SE ESTÁN AGRUPANDPO...')
-
-#Filtros para  separar los post por hobbit
-filters = ['FRODO', 'BILBO', 'SAMSAGAZ',
-           'SAM', 'MERIADOC', 'MERRY',
-           'PEREGRIN', 'PIPPIN', 'SMEAGOL',
-           'GOLLUM']
-
-#Es el objeto que contiene los resultados del filtrado   
-f_hobbits = {
-    'FRODO': [],
-    'BILBO': [],
-    'SAM': [],
-    'MERRY': [],
-    'PIPPIN': [],
-    'GOLLUM': []
-}
-
-#Guarda la lista de hobbits con más post
-popular_hobbit = ['',0]
-
-#Guarda los hobbits ordenados alfabéticamente
-hobbits = ['BILBO', 'FRODO', 'GOLLUM', 'MERRY', 'PIPPIN', 'SAM']
-
-#Filtra los post por hobbit
-for post in subreddit:
-    for hobbit in filters:
-        if hobbit in post.title.upper():
-            if hobbit == 'SAMSAGAZ':
-                f_hobbits['SAM'].append(post)
-            elif hobbit == 'MERIADOC':
-                f_hobbits['MERRY'].append(post)
-            elif hobbit == 'SMEAGOL':
-                f_hobbits['GOLLUM'].append(post)
-            else:    
-                f_hobbits[hobbit].append(post)
-
-#Obtiene el/los hobbit(s) con más post
-for hbt in f_hobbits:
-    if len(f_hobbits[hbt]) == popular_hobbit[1]:
-    	new_popular = hobbits.index(hbt)
-    	current_popular = hobbits.index(popular_hobbit[0])
-    	if new_popular < current_popular:
-    		popular_hobbit[0] = hbt
-    elif len(f_hobbits[hbt]) > popular_hobbit[1]:
-        popular_hobbit[0] = hbt
-        popular_hobbit[1] = len(f_hobbits[hbt])
-
-#Hace el upvote a los post del hobbit más popular
-for post in f_hobbits[popular_hobbit[0]]:
-    submission = reddit.submission(id=post.id)
-    submission.upvote()	
-
-#imprime en json los post agupados por hobbit
-def print_json():
-    print('{')
-    for hobbit in f_hobbits:
-        print('\t' + hobbit + ": [")
-        for post in f_hobbits[hobbit]:
-            print('\t\t' + post.title + ',')
-        print('\t]')
-    print('}')
-
-print('POST AGRUPADOS POR HOBBIT:')
-print_json()
-print('EL HOBBIT MÁS POPULAR ES:')
-print(popular_hobbit[0])
+filterSubreddit.filterSubreddit(subreddit, filters, f_posts)
+print("POST ORDENADOS POR CATEGORIAS")
+filterSubreddit.print_json(f_posts)
+filterSubreddit.popularPost(filters,f_posts, popular_post)
+print("CATEGORÍA MÁS POPULAR")
+print(popular_post[0])
+filterSubreddit.makeUpvote(f_posts, popular_post[0], reddit)
