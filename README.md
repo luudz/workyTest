@@ -45,7 +45,7 @@ Se volvió a ejecutar el código con diferentes entradas:
 - Filtros: nginx,saas,learn,code,tutorial,program
 
 ![Entrada de datos](/images/input_python.png)
-![Salida al ejecutar](/immages/output_python.png)
+![Salida al ejecutar](/images/output_python.png)
 
 ## Ejecución del código
 
