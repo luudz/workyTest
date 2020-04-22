@@ -8,15 +8,15 @@
 
 ## Descripción del ambiente
 
-SO: Ubuntu 18.04.4 
-Python 3.6.9 (La versión mínima requerida por paw en la 3.5)
-SublimeText 3 como editor de Textos
-Terminal del Sistema
+- SO: Ubuntu 18.04.4 
+- Python 3.6.9 (La versión mínima requerida por paw en la 3.5)
+- SublimeText 3 como editor de Textos
+- Terminal del Sistema
 
 El mismo código también fue probado satisfactoriamente bajo el siguiente ambiente:
-SO: Debian GNU/Linux 10(buster)
-Python 3.7.3
-Terminal del sistema
+- SO: Debian GNU/Linux 10(buster)
+- Python 3.7.3
+- Terminal del sistema
 
 ## Ejecución del código
 
