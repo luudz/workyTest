@@ -36,7 +36,7 @@ filterGroup = {}
 #Crea el diccionario de filtros unificados
 while joinFilter.upper() == 'SI':
 	filterGroupValue = input("Escribe los filtros que vas a unificar, separados por una coma (,)\n")
-	filterGroupKey = input("Escribe el nombre con el que te gustaría agregarlos\n")
+	filterGroupKey = input("Escribe el nombre con el que te gustaría agruparlos\n")
 	filterGroup[filterGroupKey.upper()] = filterGroupValue.upper().split(",")
 	print("¿Te gustaría unificar otros filtos?")
 	joinFilter = input("Escribe 'SI' o 'NO'\n")

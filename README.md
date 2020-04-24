@@ -8,7 +8,7 @@ La aplicación requiere 3 entradas principales, al ejecutar el código, se irán
 - Cantidad de post a clasificar (ej. 100)
 - Lista de palabras clave para filtrar, separadas por una coma (ej, frodo,bilbo,sam,merry,pippin,gollum)
 
-Posteriormente, se dará la opción de unificar filtros (ej. SAM y SAMSAGAZ, como uno solo), si el usuario acepta unificar filtros, se le requerirán dos entradas más:
+Posteriormente, se dará la opción de unificar filtros (ej. SAM y SAMSAGAZ, como uno solo), si el usuario acepta unificar filtros, se le requerirán dos entradas más, por cada grupo de filtros a unificar:
 
 - Lista de filtros que serán unificados
 - Nombre con el que se unificarán los filtros
@@ -32,7 +32,7 @@ Se ejecutó la aplicación con los valores del ejemplo anterior:
 Se volvió a ejecutar el código con diferentes entradas:
 - Subreddit: Python
 - Cantidad de post: 100
-- Filtros: nginx,saas,learn,code,tutorial,program
+- Filtros: writing,codding,working,doing,script,learn,node,mongo,website
 
 ![Entrada de datos](/images/input_python.png)
 ![Salida al ejecutar](/images/output_python.png)
