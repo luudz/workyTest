@@ -1,9 +1,15 @@
 #Clasifica los post por los filtros
-def filterSubreddit(subreddit, filters, f_posts):
+def filterSubreddit(subreddit, filters, f_posts, filterGroup):
     for post in subreddit:
         for f in filters:
             if f in post.title.upper():
-                f_posts[f].append(post)
+                exists = False #Auxiliar para clasificar los filtros unificados
+                for key in filterGroup:
+                    if f in filterGroup[key]:
+                        f_posts[key].append(post)
+                        exists = True
+                if not exists: #Es decir, que no es un filtro unificado
+                    f_posts[f].append(post)
 
 #Obtiene el filtro con más post
 def popularPost(filters, f_posts, popular_post):
