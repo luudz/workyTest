@@ -1,4 +1,4 @@
-# worky test app
+# Worky Test App
 > Contiene el código correspondiente a la solución de la PRUEBA WORKY.
 
 ## Descripción de la aplicación
